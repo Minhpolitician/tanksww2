@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import mlab
 from mongoengine import *
 app = Flask(__name__)
@@ -33,6 +33,19 @@ def bmi():
     height = int(args["height"]) / 100
     bmi = weight / (height ** 2)
     return str(bmi)
+
+@app.route('/admin')
+def admin():
+    return render_template("admin.html", tank_types=tankType.objects())
+
+
+@app.route('/delete_tank_type/<tank_id>')
+def delete_tank_type(tank_id):
+    tank_type = tankType.objects().with_id(tank_id)
+    if tank_type is not None:
+        tank_type.delete()
+    return redirect('/admin')
+    return "Deleted:" + tank_id
 
 
 if __name__ == '__main__':
