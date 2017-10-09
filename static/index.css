@@ -1,0 +1,7 @@
+.card-girl-type {
+  min-height: 420px !important;
+}
+.card-girl-img{
+  object-fit: cover;
+  height: 20vw !important;
+}
