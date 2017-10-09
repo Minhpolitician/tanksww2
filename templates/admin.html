@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div clas="container">
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <th >STT</th>
+    <th > Country</th>
+    <th > Description</th>
+    <th >Image</th>
+    <th> Edit </th>
+  </tr>
+  </thead>
+  <tbody>
+{% for tank_type in tank_types %}
+<tr>
+  <td>{{ loop.index}} </td>
+  <td>{{tank_type.name}}</td>
+  <td>{{tank_type.description}}</td>
+  <td><a target="_blank" href="{{tank_type.image}}">ahihi cho xem ảnh đi</a> </td>
+  <td>
+  <a href=>    <i class="fa fa-pencil" aria-hidden="true"></i>  </a> <br>
+  <a href="/delete_tank_type/{{ tank_type.id }}">   <i class="fa fa-trash" aria-hidden="true"></i> </a>
+  </td>
+</tr>
+{% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}
